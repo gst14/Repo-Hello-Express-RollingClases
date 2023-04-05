@@ -76,6 +76,14 @@ app.post("/productos", (req, res)=>{
     res.send({mensaje: "Producto creado con exito", producto: nuevoProducto})
 })
 
+app.delete("/productos/:id", (req, res)=>{
+    let id = req.params.id;
+    let producto = productos.find( producto => producto.id == id )
+    let index = productos.indexOf(producto)
+    productos.splice(index, 1)
+    res.send({mensaje: "Producto eliminado con exito", producto: producto})
+})
+
 
 app.get('/login', (req, res)=>{
     res.send({ mensaje: "Estoy logueado" })
