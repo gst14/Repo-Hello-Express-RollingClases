@@ -1,27 +1,27 @@
 const productos = [
     {
-      id: "1",
-      nombre: "Coca Cola",
-      precio: 100,
-      stock: 10
+        id: "yd6vo1",
+        nombre: "Coca Cola",
+        precio: 100,
+        stock: 10
     },
     {
-      id: "2",
-      nombre: "Pepsi",
-      precio: 100,
-      stock: 10
+        id: "xcd3bx5",
+        nombre: "Pepsi",
+        precio: 100,
+        stock: 10
     },
     {
-      id: "3",
-      nombre: "Fanta",
-      precio: 100,
-      stock: 10
+        id: "q16e8se",
+        nombre: "Fanta",
+        precio: 100,
+        stock: 10
     },
     {
-      id: "4",
-      nombre: "Sprite",
-      precio: 100,
-      stock: 10
+        id: "7u63j6n",
+        nombre: "Sprite",
+        precio: 100,
+        stock: 10
     }
 ]
 
@@ -52,7 +52,7 @@ const editProduct = (req, res)=>{
 
 const createProduct = (req, res)=>{
     const nuevoProducto = {
-        id: productos.length +1 ,
+        id: Math.random().toString(36).substring(2, 9),
         nombre: req.body.nombre,
         precio: req.body.precio,
         stock: req.body.stock
