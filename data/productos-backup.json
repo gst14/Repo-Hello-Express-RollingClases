@@ -1,0 +1,89 @@
+[{
+  "_id": {
+    "$oid": "64343447f670e3a67461b94c"
+  },
+  "nombre": "Coca Cola",
+  "precio": 100,
+  "stock": 10,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64343456f670e3a67461b94e"
+  },
+  "nombre": "Pepsi",
+  "precio": 100,
+  "stock": 10,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "643434fcf670e3a67461b950"
+  },
+  "nombre": "Fanta",
+  "precio": 100,
+  "stock": 10,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6434350af670e3a67461b952"
+  },
+  "nombre": "Sprite",
+  "precio": 100,
+  "stock": 10,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "643469bcea606d416de8069c"
+  },
+  "nombre": "Galletas Oreo",
+  "precio": 100,
+  "stock": 10,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "643469c4ea606d416de8069e"
+  },
+  "nombre": "Galletas Chips Ahoy",
+  "precio": 100,
+  "stock": 10,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "643469cbea606d416de806a0"
+  },
+  "nombre": "Galletas Ritz",
+  "precio": 100,
+  "stock": 10,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "643469d3ea606d416de806a2"
+  },
+  "nombre": "Queso Crema",
+  "precio": 100,
+  "stock": 10,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "643469dbea606d416de806a4"
+  },
+  "nombre": "Yerba Mate Playadito",
+  "precio": 100,
+  "stock": 10,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "643469e1ea606d416de806a6"
+  },
+  "nombre": "Jabon liquido",
+  "precio": 100,
+  "stock": 10,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "643469ffea606d416de806a8"
+  },
+  "nombre": "Shampoo Tresemme",
+  "precio": 100,
+  "stock": 10,
+  "__v": 0
+}]
