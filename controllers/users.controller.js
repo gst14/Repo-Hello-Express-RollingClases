@@ -1,5 +1,4 @@
 const Usuarios = require("../model/user.model")
-const { validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 // Obtener todos los usuarios
 const getUsers = async(req, res)=>{
@@ -77,7 +76,6 @@ const editUser = async(req, res)=>{
                 password:  req.body.password,
                 isDeleted: false
             }
-            const user = await Usuarios.findByIdAndUpdate(id, userEdit)
             res.status(200).send({ mensaje: "Usuario modificado con exito", usuario: userEdit })
         }else{
             res.status(400).send({ mensaje: "Usuario no encontrado" })
@@ -99,7 +97,6 @@ const deleteUser = async(req, res)=>{
                 userFind.save()
                 return res.status(200).send({ mensaje: "Usuario eliminado de manera logica", usuario: userFind })
             }
-            const user = await Usuarios.findByIdAndDelete(id)
             res.status(200).send({ mensaje: "Usuario eliminado con exito", usuario: userFind })
         }else{
             res.status(400).send({ mensaje: "Usuario no encontrado" })

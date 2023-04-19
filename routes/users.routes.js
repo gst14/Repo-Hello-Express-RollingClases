@@ -1,7 +1,7 @@
 const Router = require('express');
 const { getUsers, getUserById, createUser, loginUser, resetPassword, editUser, deleteUser } = require('../controllers/users.controller');
 const router = Router()
-const { body, validationResult } = require('express-validator');
+const { body } = require('express-validator');
 const { validateErrors } = require('../middlewares/validateErrors');
 
 router.get('/', getUsers)
