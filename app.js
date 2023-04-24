@@ -5,7 +5,7 @@ const productRoutes = require('./routes/products.routes')
 const PORT = process.env.PORT || 8080
 const cors = require('cors');
 const { initDBConnection } = require('./database/dbConnection');
-const { userRoutes } = require('./routes/users.routes');
+const userRoutes  = require('./routes/users.routes');
 
 app.use(express.json())
 app.use(cors())
@@ -13,8 +13,8 @@ app.get('/', (req, res)=>{
     res.send({ mensaje: "Hola humano" })
 })
 
-app.use("/productos", productRoutes)
-app.use("/usuarios", userRoutes)
+app.use("/api/productos", productRoutes)
+app.use("/api/usuarios", userRoutes)
 
 
 app.listen(PORT, ()=>{

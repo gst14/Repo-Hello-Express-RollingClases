@@ -1,5 +1,7 @@
 const Usuarios = require("../model/user.model")
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 // Obtener todos los usuarios
 const getUsers = async(req, res)=>{
     try {
@@ -50,12 +52,21 @@ const loginUser = async(req, res)=>{
             const passwordStoredInDB = userFind.password
             const passwordMatch = bcrypt.compareSync(passwordEnterByUser, passwordStoredInDB)
             if(passwordMatch){
-                res.status(200).send({ mensaje: "Usuario logueado con exito", usuario: userFind })
+                const payload = {
+                    id: userFind._id,
+                    email: userFind.email,
+                    nombre: userFind.nombre
+                }
+                const token = jwt.sign(payload, process.env.SECRET_KEY, 
+                { 
+                    expiresIn: "12h" 
+                })
+                res.status(200).send({ mensaje: "Usuario logueado con exito", token, ...payload })
             }else{
-                res.status(400).send({ mensaje: "Contraseña incorrecta" })
+                res.status(400).send({ mensaje: "Email o contraseña incorrectos" })
             }
         }else{
-            res.status(400).send({ mensaje: "Usuario no encontrado" })
+            res.status(400).send({ mensaje: "Email o contraseña incorrectos" })
         }
     } catch (error) {
         res.send(error)
@@ -110,7 +121,8 @@ const deleteUser = async(req, res)=>{
 const resetPassword = async(req, res)=>{
     try {
         const email = req.body.email
-        let userFind = Usuarios.findOne({email})
+        let userFind = await Usuarios.findOne({email})
+        console.log(userFind)
         if(userFind){
             const password = req.body.password
             const salt = bcrypt.genSaltSync(10);

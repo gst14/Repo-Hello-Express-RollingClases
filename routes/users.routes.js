@@ -3,19 +3,22 @@ const { getUsers, getUserById, createUser, loginUser, resetPassword, editUser, d
 const router = Router()
 const { body } = require('express-validator');
 const { validateErrors } = require('../middlewares/validateErrors');
+const { jwtValidation } = require('../middlewares/jwtValidation');
 
-router.get('/', getUsers)
+router.get('/', jwtValidation ,getUsers)
 
-router.get('/:id', getUserById)
-
+router.get('/:id', jwtValidation, getUserById)
+// Expresion regular o regex para validar la contraseñas
 router.put('/:id'
 ,[
     body('email').isEmail().withMessage('El email debe ser un email válido'),
     body('nombre').notEmpty().withMessage('El nombre es obligatorio'),
     body('nombre').isLength({min: 3}).withMessage('El nombre debe tener al menos 3 caracteres'),
     body('password').isLength({min: 6}).withMessage('La contraseña debe tener al menos 6 caracteres'),
+    // check('password', 'La contraseña debe tener al menos 6 caracteres').isLength({min: 6}),
     body('password').matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/).withMessage('La contraseña debe tener al menos una mayúscula, una minúscula y un número'),
-    validateErrors
+    validateErrors,
+    jwtValidation
 ],
 editUser)
 
@@ -26,11 +29,11 @@ router.post("/"
     body('nombre').isLength({min: 3}).withMessage('El nombre debe tener al menos 3 caracteres'),
     body('password').isLength({min: 6}).withMessage('La contraseña debe tener al menos 6 caracteres'),
     body('password').matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/).withMessage('La contraseña debe tener al menos una mayúscula, una minúscula y un número'),
-    validateErrors
+    validateErrors,
 ]
 ,createUser)
 
-router.delete("/:id", deleteUser)
+router.delete("/:id", jwtValidation,deleteUser)
 
 router.post("/login"
 ,[
@@ -40,14 +43,13 @@ router.post("/login"
 ]
 ,loginUser)
 
-router.post("/reset-password"
+router.put("/reset/password"
 ,[
     body('email').isEmail().withMessage('El email debe ser un email válido'),
     body('password').notEmpty().withMessage('La contraseña es obligatoria'),
-    validateErrors
+    validateErrors,
+    jwtValidation
 ]
 ,resetPassword)
 
-module.exports = {
-    userRoutes: router
-};
+module.exports = router;
