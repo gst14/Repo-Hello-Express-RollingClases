@@ -47,8 +47,7 @@ router.put("/reset/password"
 ,[
     body('email').isEmail().withMessage('El email debe ser un email válido'),
     body('password').notEmpty().withMessage('La contraseña es obligatoria'),
-    validateErrors,
-    jwtValidation
+    validateErrors
 ]
 ,resetPassword)
 
